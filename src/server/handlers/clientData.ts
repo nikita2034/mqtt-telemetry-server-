@@ -18,15 +18,14 @@ const handleClientData = async (
   }
 
   const topicParts = topic.split('/');
-  const uid_hw = topicParts[topicParts.length - 1]; // ID транспортного средства
+  const uid_hw = topicParts[topicParts.length - 1]; 
 
-  const groupedData: Record<string, any[]> = {}; // Для хранения сгруппированных данных по таблицам
-  const createdIds: Record<string, number[]> = {}; // Для хранения ID созданных записей
+  const groupedData: Record<string, any[]> = {};
+  const createdIds: Record<string, number[]> = {};
 
-  // Обрабатываем каждое сообщение в массиве
   for (const { i, d } of mess) {
     try {
-      const buffer = hexStringToBuffer(d); // Преобразуем данные в буфер
+      const buffer = hexStringToBuffer(d); 
       const idAsHex = parseInt(i, 10).toString(16).toUpperCase().padStart(8, '0');
       const messageData = processMessage(idAsHex, buffer, timestamp, uid_hw);
   
@@ -42,7 +41,6 @@ const handleClientData = async (
   }
 try {
   await sequelize.transaction(async (transaction: any) => {
-    // Сначала сохраняем данные в таблицы
     for (const [table, records] of Object.entries(groupedData)) {
       try {
         const Model = getModelByName(table);
@@ -58,11 +56,11 @@ try {
 
         const createdRecords = await Model.bulkCreate(mergedRecord, {
           transaction,
-          returning: true, // Это указывает Sequelize вернуть созданные записи
+          returning: true, 
         });
 
         console.log("Созданные записи:", createdRecords);
-        createdIds[table] = createdRecords.map((record: any) => record.id); // Проверка наличия поля `id`
+        createdIds[table] = createdRecords.map((record: any) => record.id); 
         console.log(`Записи успешно вставлены в ${table}:`, createdRecords);
       } catch (error) {
         console.error(`Ошибка при сохранении записей в таблицу ${table}:`, error);
@@ -77,11 +75,11 @@ try {
         }
 
         const transportDataRecords = [{
-          blcok_id: uid_hw, // Используем UID транспортного средства
-          date: new Date(), // Текущая дата
+          blcok_id: uid_hw, 
+          date: new Date(), 
           ...Object.keys(createdIds).reduce((acc: Record<string, number | null>, table) => {
             const idKey = `id_${table}`;
-            acc[idKey] = createdIds[table]?.[0] || null; // Берем только первый ID
+            acc[idKey] = createdIds[table]?.[0] || null; 
             return acc;
           }, {}),
         }];
@@ -90,20 +88,18 @@ try {
         await transportDataModel.bulkCreate(transportDataRecords, { transaction });
         console.log('Данные транспорта успешно сохранены в базе данных.');
 
-        // Обновление поля received_count в таблице transports
         const transportsModel = getModelByName('transports');
         if (!transportsModel) {
           throw new Error('Модель для Transports не найдена');
         }
 
-        // Обновляем поле received_count для transport по block_id
         await transportsModel.update(
           {
-            received_count: cnt // Увеличиваем на 1
+            received_count: cnt 
           },
           {
             where: { block_id: uid_hw },
-            transaction // Используем транзакцию
+            transaction 
           }
         );
         console.log('Поле received_count успешно обновлено в таблице transports.');

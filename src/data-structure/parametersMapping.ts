@@ -451,8 +451,6 @@ const parametersMapping: ParameterMapping[] = [
             },
         ]
     },
-
-
     {
         id: '08F7121E',
         positions: [
