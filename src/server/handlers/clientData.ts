@@ -26,9 +26,11 @@ const handleClientData = async (
   for (const { i, d } of mess) {
     try {
       const buffer = hexStringToBuffer(d); 
+      console.log("buffer",buffer)
       const idAsHex = parseInt(i, 10).toString(16).toUpperCase().padStart(8, '0');
+      console.log("ID",idAsHex)
       const messageData = processMessage(idAsHex, buffer, timestamp, uid_hw);
-  
+
       Object.entries(messageData).forEach(([table, record]) => {
         if (!groupedData[table]) {
           groupedData[table] = [];
@@ -75,7 +77,7 @@ try {
         }
 
         const transportDataRecords = [{
-          blcok_id: uid_hw, 
+          block_id: uid_hw, 
           date: new Date(), 
           ...Object.keys(createdIds).reduce((acc: Record<string, number | null>, table) => {
             const idKey = `id_${table}`;

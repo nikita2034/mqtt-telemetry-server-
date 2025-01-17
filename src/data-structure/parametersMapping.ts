@@ -1,5 +1,76 @@
 const parametersMapping: ParameterMapping[] = [
     {
+        id: '18FEF31C',   
+        positions: [
+            {
+                name: 'latitude',  //Широта
+                byte: [3,2,1,0],
+                table: 'locations',
+                field: 'latitude',
+                coefficient: 0.0000001,
+                offset: -210
+            },
+            {
+                name: 'longitude',  //Долгота
+                byte: [7,6,5,4],
+                table: 'locations',
+                field: 'longitude',
+                coefficient: 0.0000001,
+                offset: -210
+            }
+        ]
+    },
+    // {
+    //     id: '18F758F4',   
+    //     positions: [
+    //         {
+    //             name: 'speed',  //Скорость
+    //             byte: [0],
+    //             bits: [0],
+    //             table: 'locations',
+    //             field: 'speed',
+    //             mapping: {
+    //                 0: 'stopped',
+    //                 1: 'running',
+    //                 2: 'error'
+    //             }
+    //         },
+    //         {
+    //             name: 'speed',  //Скорость
+    //             byte: [0],
+    //             bits: [1],
+    //             table: 'locations',
+    //             field: 'speed',
+    //             mapping: {
+    //                 0: 'stopped',
+    //                 1: 'running',
+    //                 2: 'error'
+    //             }
+    //         }
+    //     ]
+    // },
+    {
+        id: '18FEE81C',   
+        positions: [
+            {
+                name: 'speed',  //Скорость
+                byte: [2,3],
+                table: 'locations',
+                field: 'speed',
+                coefficient: 0.00390625,
+                offset: 0
+            }
+        ]
+    },
+  
+
+
+
+
+
+
+
+    {
         id: '18F003AD',   
         positions: [
             {
@@ -92,7 +163,7 @@ const parametersMapping: ParameterMapping[] = [
         positions: [
             {
                 name: 'battery_soc',  //SOC
-                byte: [5],
+                byte: [5,6],
                 table: 'battery_parameters',
                 field: 'battery_soc',
                 coefficient: 0.1,
@@ -100,7 +171,7 @@ const parametersMapping: ParameterMapping[] = [
             },
             {
                 name: 'power_consumption_all', //расход энергии all_current
-                byte: [2],
+                byte: [2,3],
                 table: 'electric_system_parameters',
                 field: 'power_consumption_all',
                 coefficient: 0.1,
@@ -126,7 +197,7 @@ const parametersMapping: ParameterMapping[] = [
             },
             {
                 name: 'power_consumption_dcdc',//расход энергии dcdc
-                byte: [2],
+                byte: [1,2],
                 table: 'electric_system_parameters',
                 field: 'power_consumption_dcdc',
                 coefficient: 0.1,
@@ -231,14 +302,14 @@ const parametersMapping: ParameterMapping[] = [
     {
         id: '0CFFD003',
         positions: [
-            {
-                name: 'gearbox_output_speed', //Cкорость вразения на выходе из коробки передач
-                byte: [3, 4],
-                table: 'powertrain_system_parameters',  // поменять таблицу и названия поля
-                field: 'gearbox_output_speed',             //
-                coefficient: 0.125,
-                offset: 0
-            },
+            // {
+            //     name: 'gearbox_output_speed', //Cкорость вразения на выходе из коробки передач
+            //     byte: [3, 4],
+            //     table: 'powertrain_system_parameters',  // поменять таблицу и названия поля
+            //     field: 'gearbox_output_speed',             //
+            //     coefficient: 0.125,
+            //     offset: 0
+            // },
             {
                 name: 'transmission_status', // включенная передача
                 byte: [0],
