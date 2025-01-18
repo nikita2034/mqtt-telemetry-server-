@@ -1,13 +1,13 @@
 {
   "compilerOptions": {
-    "target": "ES2020", 
-    "module": "CommonJS", 
-    "outDir": "./dist", 
-    "rootDir": "./src", 
-    "strict": true,
+    "target": "ES6",                     // Устанавливает стандарт ES6 для компиляции
+    "module": "commonjs",                // Использует CommonJS модули
+    "outDir": "./dist",                  // Папка для скомпилированных файлов
+    "rootDir": "./src",                  // Исходная папка с TypeScript файлами
     "esModuleInterop": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
   },
-  "include": ["src/**/*.ts"], 
-  "exclude": ["node_modules"] 
+  "include": ["src/**/*.ts"],             // Включаем все файлы TypeScript в папке src
+  "exclude": ["node_modules"]             // Исключаем папку node_modules
 }
