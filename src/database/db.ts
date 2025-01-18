@@ -1,7 +1,7 @@
 import { Sequelize } from 'sequelize';
 
 // Настройки подключения
-const sequelize = new Sequelize('version_from_Vlad', 'postgres', '12345678', {
+const sequelize = new Sequelize('client_vehicle_tracking', 'postgres', '1256', {
     host: 'localhost', // Укажите IP-адрес удаленного сервера
     dialect: 'postgres',   // Используемый диалект (PostgreSQL)
     logging: console.log,        // Отключение логирования SQL-запросов
