@@ -3,7 +3,9 @@ import { getModelByName } from '../../database/models/getModelByName';
 import { processMessage } from '../../utils/processMessage';
 import { hexStringToBuffer } from '../../utils/processMessage';
 import { Transport } from '../../database/models';
+import { DataSessionMessage } from '../../types/DataSessionMessage';
 import logger from '../../utils/logger';
+
 const handleClientData = async (
   topic: string,
   message: DataSessionMessage,

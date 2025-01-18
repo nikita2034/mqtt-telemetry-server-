@@ -1,3 +1,4 @@
+import { Parameter } from "../types/Parameter";
 const trackingStructure: Map<string, Array<Parameter>> = new Map([
     [
         'Y3M4381EER0000025',

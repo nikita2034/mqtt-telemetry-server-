@@ -1,4 +1,4 @@
-interface DataSessionMessage {
+ export interface DataSessionMessage {
     t: number; // Временная метка (UNIX timestamp)
     p: {
       cnt: number; // Количество сообщений
@@ -11,7 +11,7 @@ interface DataSessionMessage {
   }
 
   
-  interface ParameterMapping {
+  export interface ParameterMapping {
     id: string; // Идентификатор сообщения
     positions: Array<{
       name:string;

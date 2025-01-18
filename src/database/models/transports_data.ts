@@ -27,35 +27,35 @@ TransportsData.init(
                 key: 'id'
             }
         },
-        id_electric_system_parameters: {
+        id_el_syst_par: {
             type: DataTypes.BIGINT,
             references: {
                 model: 'ElectricSystemParameters',
                 key: 'id'
             }
         },
-        id_battery_parameters: {
+        id_battery_par: {
             type: DataTypes.BIGINT,
             references: {
                 model: 'BatteryParameters',
                 key: 'id'
             }
         },
-        id_powertrain_system_parameters: {
+        id_powertrain_sys_par: {
             type: DataTypes.BIGINT,
             references: {
                 model: 'PowertrainSystemParameters',
                 key: 'id'
             }
         },
-        id_transport_air_conditioning: {
+        id_tr_air_conditions: {
             type: DataTypes.BIGINT,
             references: {
                 model: 'TransportAirConditioning',
                 key: 'id'
             }
         },
-        id_transport_lighting: {
+        id_tr_lighting: {
             type: DataTypes.BIGINT,
             references: {
                 model: 'TransportLighting',

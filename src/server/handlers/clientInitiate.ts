@@ -1,6 +1,7 @@
 import mqtt from 'mqtt';
 import Transport from '../../database/models/transport';
 import trackingStructure from '../../data-structure/initiateDataTransmissionMessage';
+import { Parameter } from '../../types/Parameter';
 interface InitiateDataTransmissionMessage {
     t: number;
     p: {

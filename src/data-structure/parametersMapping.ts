@@ -1,3 +1,4 @@
+import { ParameterMapping } from "../types/DataSessionMessage";
 const parametersMapping: ParameterMapping[] = [
     {
         id: '18FEF31C',   
