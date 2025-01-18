@@ -7,8 +7,9 @@ import { TransportAttributes } from '../../types/TransportAttributes';
 interface TransportCreationAttributes extends Optional<TransportAttributes,   'received_count'> {}
 
 // Определение модели
-class Transport extends Model<TransportAttributes, TransportCreationAttributes> implements TransportAttributes {
-    public vin!: string;
+// class Transport extends Model<TransportAttributes, TransportCreationAttributes> implements TransportAttributes {
+class Transport extends Model<TransportAttributes> implements TransportAttributes {
+    public id!: string;
     public model?: string;
     public year_release?: string;
     public vehicle_type_id?: number;
@@ -17,13 +18,14 @@ class Transport extends Model<TransportAttributes, TransportCreationAttributes> 
     public block_id?: string;
     public is_archived?: boolean;
     public received_count?: number;
+    public id_transport?: string;
 }
     Transport.init(
         {
-            vin: {
-                type: DataTypes.STRING,
-                autoIncrement: true,
-                primaryKey: true,
+            id: {
+                type:  DataTypes.STRING(17),
+                primaryKey: true,  
+                allowNull: false,   
             },
             model: {
                 type: DataTypes.STRING(20),
@@ -50,11 +52,11 @@ class Transport extends Model<TransportAttributes, TransportCreationAttributes> 
                 allowNull: true,
                 unique: true,
             },
-            is_archived: {
-                type: DataTypes.STRING(20),
-                allowNull: true,
-                defaultValue: false,
-            },
+            // is_archived: {
+            //     type: DataTypes.STRING(20),
+            //     allowNull: true,
+            //     defaultValue: false,
+            // },
             received_count: {
                 type: DataTypes.INTEGER,
                 allowNull: true,

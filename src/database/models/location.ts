@@ -12,7 +12,6 @@ Locations.init(
         },
         data: {
             type: DataTypes.DATE,
-            allowNull: false,
         },
         latitude: {
             type: DataTypes.DOUBLE,
@@ -20,12 +19,12 @@ Locations.init(
         longitude: {
             type: DataTypes.DOUBLE,
         },
-        block_id: {
+        id_transport: {
             type: DataTypes.STRING,
-            references: {
-                model: 'Transport',
-                key: 'block_id'
-            }
+            // references: {
+            //     model: 'Transport',
+            //     key: 'block_id'
+            // }
         },
         speed: {
             type: DataTypes.INTEGER,

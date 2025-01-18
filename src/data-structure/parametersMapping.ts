@@ -63,13 +63,6 @@ const parametersMapping: ParameterMapping[] = [
         ]
     },
   
-
-
-
-
-
-
-
     {
         id: '18F003AD',   
         positions: [

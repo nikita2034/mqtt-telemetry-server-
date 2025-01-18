@@ -11,7 +11,7 @@ TransportsData.init(
             primaryKey: true,
         },
         date: {
-            type: DataTypes.DATEONLY,
+            type: DataTypes.DATE,
         },
         id_bzp_commands: {
             type: DataTypes.BIGINT,
