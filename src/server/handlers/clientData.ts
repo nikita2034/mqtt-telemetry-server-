@@ -60,7 +60,7 @@ if (!transportsModel) {
       });
     } catch (error) {
       console.error(`Ошибка обработки сообщения с ID ${i}:`, error);
-      logger.error(`Ошибка обработки сообщения с ID ${i}:`, error);
+      logger.error(`Ошибка обработки сообщения с ID ${i}:, ${error}`);
     }
   }
 
@@ -78,7 +78,7 @@ if (!transportsModel) {
           }, {})];
 
           console.log('Очищенные данныфе records:', mergedRecord);
-          logger.info('Очищенные данныфе records:', mergedRecord);
+          logger.info(`Очищенные данныфе records:', ${mergedRecord}`);
           const createdRecords = await Model.bulkCreate(mergedRecord, {
             transaction,
             returning: true,
@@ -88,7 +88,7 @@ if (!transportsModel) {
           logger.info('Созданные записи:', createdRecords);
           createdIds[table] = createdRecords.map((record: any) => record.id);
           console.log(`Записи успешно вставлены в ${table}:`, createdRecords);
-          logger.info(`Записи успешно вставлены в ${table}:`, createdRecords);
+          logger.info(`Записи успешно вставлены в ${table}:, ${createdRecords}`);
         } catch (error) {
           console.error(`Ошибка при сохранении записей в таблицу ${table}:`, error);
         }
@@ -113,7 +113,7 @@ if (!transportsModel) {
           }];
 
           console.log('Итоговые записи для транспорных данных:', transportDataRecords);
-          logger.info('Итоговые записи для транспорных данных:', transportDataRecords);
+          logger.info(`Итоговые записи для транспорных данных:', ${transportDataRecords}`);
           await transportDataModel.bulkCreate(transportDataRecords, { transaction });
           console.log('Данные транспорта успешно сохранены в базе данных.');
           logger.info('Данные транспорта успешно сохранены в базе данных.');
