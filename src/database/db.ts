@@ -1,4 +1,5 @@
 // import { Sequelize } from 'sequelize';
+// import logger from '../utils/logger';
 
 // // Настройки подключения
 // const sequelize = new Sequelize('version_from_Vlad', 'postgres', '12345678', {
@@ -12,9 +13,9 @@
 // (async () => {
 //     try {
 //         await sequelize.authenticate();
-//         console.log('Соединение с базой данных успешно установлено.');
+//         logger.info('Соединение с базой данных успешно установлено.');
 //     } catch (error) {
-//         console.error('Ошибка подключения к базе данных:', error);
+//         logger.error(`Ошибка подключения к базе данных:, ${error}`);
 //     }
 // })();
 

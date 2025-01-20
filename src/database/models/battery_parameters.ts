@@ -28,8 +28,7 @@ BatteryParameters.init(
             allowNull: true,                // Поле может быть NULL
         },
         battery_charging: {
-            type: DataTypes.BOOLEAN,       // Логическое значение
-            allowNull: true,                // Поле может быть NULL
+            type: DataTypes.STRING,       // Логическое значение        
         },
     },
     {
