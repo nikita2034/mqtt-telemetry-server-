@@ -21,11 +21,18 @@ Locations.init(
         },
         id_transport: {
             type: DataTypes.STRING,
-            // references: {
-            //     model: 'Transport',
-            //     key: 'block_id'
-            // }
+            references: {
+                model: 'Transport',
+                key: 'id'
+            }
         },
+        // block_id: {
+        //     type: DataTypes.STRING,
+        //     references: {
+        //         model: 'Transport',
+        //         key: 'block_id'
+        //     }
+        // },
         speed: {
             type: DataTypes.INTEGER,
         },
