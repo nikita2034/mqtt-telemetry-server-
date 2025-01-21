@@ -102,8 +102,19 @@ if (!transportsModel) {
           }
           const date = new Date(timestamp * 1000); 
           console.log("date",date)
+          const transport = await Transport.findOne({
+            where: { block_id: uid_hw },
+            attributes: ['id'], // Выбираем только поле id
+        });
+
+        if (!transport) {
+            throw new Error(`Транспорт с block_id ${uid_hw} не найден`);
+        }
+
+        const idTransport = transport.id;
           const transportDataRecords = [{
             block_id: uid_hw,
+            id_transport:idTransport,
             date: date,
             ...Object.keys(createdIds).reduce((acc: Record<string, number | null>, table) => {
               const idKey = `id_${table}`;

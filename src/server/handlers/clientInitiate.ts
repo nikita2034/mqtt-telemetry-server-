@@ -2,6 +2,7 @@ import mqtt from 'mqtt';
 import Transport from '../../database/models/transport';
 import trackingStructure from '../../data-structure/initiateDataTransmissionMessage';
 import { Parameter } from '../../types/Parameter';
+import logger from '../../utils/logger';
 interface InitiateDataTransmissionMessage {
     t: number;
     p: {
@@ -58,11 +59,12 @@ const handleClientInitiate = async (
             },
         };
 
-        client.publish(responseTopic, JSON.stringify(response), { retain: false }, (err) => {
+        client.publish(responseTopic, JSON.stringify(response), { retain: true }, (err) => {
             if (err) {
                 console.error(`Error publishing to ${responseTopic}:`, err);
             } else {
                 console.log(`Response sent to ${responseTopic}:`, JSON.stringify(response));
+                logger.info(`Response sent to ${responseTopic}:, ${JSON.stringify(response)}`);
             }
         });
     } catch (err) {
