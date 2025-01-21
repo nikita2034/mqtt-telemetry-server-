@@ -62,6 +62,13 @@ TransportsData.init(
                 key: 'id'
             }
         },
+        id_transport: {
+            type: DataTypes.STRING,
+            references: {
+                model: 'Transport',
+                key: 'id'
+            }
+        },
         block_id: {
             type: DataTypes.STRING,
             references: {

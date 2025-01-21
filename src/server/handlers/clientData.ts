@@ -101,6 +101,7 @@ if (!transportsModel) {
             throw new Error('Модель для TransportsData не найдена');
           }
           const date = new Date(timestamp * 1000); 
+          date.setHours(date.getHours() + 3);
           console.log("date",date)
           const transport = await Transport.findOne({
             where: { block_id: uid_hw },
@@ -108,10 +109,10 @@ if (!transportsModel) {
         });
 
         if (!transport) {
-            throw new Error(`Транспорт с block_id ${uid_hw} не найден`);
         }
 
         const idTransport = transport.id;
+        logger.info(`Транспорт VIN ${idTransport}`);
           const transportDataRecords = [{
             block_id: uid_hw,
             id_transport:idTransport,
