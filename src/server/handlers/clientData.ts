@@ -12,7 +12,9 @@ const handleClientData = async (
 ) => {
   const { t: timestamp, p } = message;
   const { cnt, mess } = p;
-
+  const date = new Date(timestamp * 1000); 
+  date.setHours(date.getHours() + 3);
+  console.log("date",date)
   console.log(`'ТОПИК И ДАННЫЕ',${topic},${JSON.stringify(message, null, 2)}`);
   if (!cnt || !mess || !Array.isArray(mess)) {
     console.error('Некорректный формат сообщения, отсутствуют или некорректны count или message array');
@@ -46,14 +48,14 @@ if (!transportsModel) {
     try {
       const buffer = hexStringToBuffer(d);
       const idAsHex = parseInt(i, 10).toString(16).toUpperCase().padStart(8, '0');
-      const messageData = processMessage(idAsHex, buffer, timestamp, uid_hw);
+      const messageData = processMessage(idAsHex, buffer);
 
       Object.entries(messageData).forEach(([table, record]) => {
         if (!groupedData[table]) {
           groupedData[table] = [];
         }
         if (table === 'locations') {
-          record.data = timestamp; // Добавляем дату из сообщения
+          record.data = date; // Добавляем дату из сообщения
           record.id_transport = id_transport; // Добавляем id_transport
         }
         groupedData[table].push(record);

@@ -10,21 +10,18 @@ export const extractValue = (
 ): any => {
   let extractedValue = 0;
 
-  // Если передан массив байтов, используем его, иначе создаём массив с единственным значением
   const byteArray = Array.isArray(bytes) ? bytes : [bytes];
   const bitArray = Array.isArray(bits) ? bits : bits !== undefined ? [bits] : undefined;
 
   if (!bitArray) {
-    // Если байты указаны в прямом порядке
     byteArray.forEach((byteIndex) => {
       const byteValue = buffer[byteIndex];
       extractedValue = (extractedValue << 8) | byteValue;
-      extractedValue = extractedValue >>> 0; // Преобразуем в беззнаковое 32-битное число
+      extractedValue = extractedValue >>> 0; 
 
       console.log(`byteValue (0x${byteValue.toString(16)}) => extractedValue (0x${extractedValue.toString(16)})`);
     });
   } else {
-    // Если есть биты, извлекаем их
     byteArray.forEach((byteIndex, i) => {
       const byteValue = buffer[byteIndex];
 
@@ -34,29 +31,26 @@ export const extractValue = (
         const bitValue = (byteValue & mask) >> bitOffset;
 
         extractedValue = (extractedValue << 1) | bitValue;
-        extractedValue = extractedValue >>> 0;  // Преобразуем в беззнаковое 32-битное число
+        extractedValue = extractedValue >>> 0;  
 
         console.log("extractedValue", extractedValue);
       }
     });
   }
 
-  // Применяем коэффициент и смещение
+
   const finalValue = extractedValue * coefficient + offset;
 
-  // Если есть маппинг и найдено соответствие, возвращаем значение
   if (mapping && mapping.hasOwnProperty(finalValue)) {
-    return mapping[finalValue];  // Возвращаем строковое значение из маппинга
+    return mapping[finalValue];  
   }
 
-  return finalValue;  // Если нет маппинга, возвращаем числовое значение
+  return finalValue;  
 };
 
 export const processMessage = (
   messageId: string,
   buffer: Buffer,
-  timestamp: number,
-  uid: string
 ) => {
   const groupedData: Record<string, any> = {};
 
