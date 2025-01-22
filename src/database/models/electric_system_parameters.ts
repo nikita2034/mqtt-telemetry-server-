@@ -22,6 +22,15 @@ ElectricSystemParameters.init(
         power_consumption_engine: {
             type: DataTypes.DECIMAL(10, 2),
         },
+        main_power_on_relay_1_status:{
+            type: DataTypes.DECIMAL(10, 2),
+        },
+        main_power_on_relay_2_status:{
+            type: DataTypes.DECIMAL(10, 2),
+        },
+        enabling_transport_terminal_15:{
+            type: DataTypes.STRING,       // Логическое значение        
+        },
     },
     {
         sequelize,

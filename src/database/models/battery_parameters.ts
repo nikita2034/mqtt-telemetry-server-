@@ -30,6 +30,48 @@ BatteryParameters.init(
         battery_charging: {
             type: DataTypes.STRING,       // Логическое значение        
         },
+        battery_activation_status:{
+            type: DataTypes.STRING,       // Логическое значение        
+        },
+        min_battery_cell_voltage:{
+            type: DataTypes.DECIMAL(5, 2),       // Логическое значение        
+        },
+        max_battery_cell_voltage:{
+            type: DataTypes.DECIMAL(5, 2),       // Логическое значение        
+        },
+        battery_charge_error_counter:{
+            type: DataTypes.DECIMAL(5, 2),       // Логическое значение        
+        },
+        successful_battery_charging_counter:{
+            type: DataTypes.DECIMAL(5, 2),       // Логическое значение        
+        },
+        charging_error_battery_not_enabled:{
+            type: DataTypes.DECIMAL(5, 2),       // Логическое значение        
+        },
+        charging_error_dcdc_not_enabled:{
+            type: DataTypes.DECIMAL(5, 2),       // Логическое значение        
+        },
+        charging_error_battery_not_disabled:{
+            type: DataTypes.DECIMAL(5, 2),       // Логическое значение        
+        },
+        charging_error_dcdc_not_disabled:{
+            type: DataTypes.DECIMAL(5, 2),       // Логическое значение        
+        },
+        error_counter_battery_not_enabled:{
+            type: DataTypes.DECIMAL(5, 2),       // Логическое значение        
+        },
+        error_counter_dcdc_not_enabled:{
+            type: DataTypes.DECIMAL(5, 2),       // Логическое значение        
+        },
+        error_counter_battery_not_disabled:{
+            type: DataTypes.DECIMAL(5, 2),       // Логическое значение        
+        },
+        error_counter_dcdc_not_disabled:{
+            type: DataTypes.DECIMAL(5, 2),       // Логическое значение        
+        },
+        charging_low_voltage_batteries:{
+            type: DataTypes.STRING,       // Логическое значение        
+        },
     },
     {
         sequelize,

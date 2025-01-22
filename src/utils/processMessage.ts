@@ -10,14 +10,16 @@ export const extractValue = (
 ): any => {
   let extractedValue = 0;
 
+  // Если передан массив байтов, используем его, иначе создаём массив с единственным значением
   const byteArray = Array.isArray(bytes) ? bytes : [bytes];
   const bitArray = Array.isArray(bits) ? bits : bits !== undefined ? [bits] : undefined;
-  if (!bitArray) {
-    byteArray.reverse().forEach((byteIndex) => {
-      const byteValue = buffer[byteIndex];
 
+  if (!bitArray) {
+    // Если байты указаны в прямом порядке
+    byteArray.forEach((byteIndex) => {
+      const byteValue = buffer[byteIndex];
       extractedValue = (extractedValue << 8) | byteValue;
-      extractedValue = extractedValue >>> 0;  
+      extractedValue = extractedValue >>> 0; // Преобразуем в беззнаковое 32-битное число
 
       console.log(`byteValue (0x${byteValue.toString(16)}) => extractedValue (0x${extractedValue.toString(16)})`);
     });
@@ -41,7 +43,6 @@ export const extractValue = (
 
   // Применяем коэффициент и смещение
   const finalValue = extractedValue * coefficient + offset;
-  // console.log("finalValue", finalValue);
 
   // Если есть маппинг и найдено соответствие, возвращаем значение
   if (mapping && mapping.hasOwnProperty(finalValue)) {
@@ -50,11 +51,6 @@ export const extractValue = (
 
   return finalValue;  // Если нет маппинга, возвращаем числовое значение
 };
-
-
-
-
-
 
 export const processMessage = (
   messageId: string,

@@ -1,6 +1,172 @@
 import { ParameterMapping } from "../types/DataSessionMessage";
 const parametersMapping: ParameterMapping[] = [
     {
+        id: '0CF7121D',   
+        positions: [
+            {
+                name: 'enabling_transport_terminal_15',  //Включение транспорта по клеме 15
+                byte: [3],
+                bits: [0,1],
+                table: 'electric_system_parameters',
+                field: 'enabling_transport_terminal_15',
+                mapping: {
+                    0: 'off',
+                    1: 'on',
+                }
+            }
+        ]
+    },
+    {
+        id: '18F758F4',   
+        positions: [
+            {
+                name: 'battery_activation_status',  //Включение батарей
+                byte: [0],
+                bits: [0,1],
+                table: 'battery_parameters',
+                field: 'battery_activation_status',
+                mapping: {
+                    0: 'off',
+                    1: 'on',
+                }
+            }
+        ]
+    },
+    {
+        id: '18F75FF4',   
+        positions: [
+            {
+                name: 'min_battery_cell_voltage',  //минимальное напряжение ячеек батарй
+                byte: [0,1],
+                table: 'battery_parameters',
+                field: 'min_battery_cell_voltage',
+                coefficient: 0.001,
+                offset: 0
+            },
+            {
+                name: 'max_battery_cell_voltage',  //максимальное напряжение ячеек батарй
+                byte: [4,5],
+                table: 'battery_parameters',
+                field: 'max_battery_cell_voltage',
+                coefficient:  0.001,
+                offset: 0
+            }
+        ]
+    },
+    {
+        id: '18FF42CF',   
+        positions: [
+            {
+                name: 'battery_charge_error_counter',  //счетчик ошибочных зарядок батарей
+                byte: [6],
+                table: 'battery_parameters',
+                field: 'battery_charge_error_counter',
+                coefficient: 1,
+                offset: 0
+            },
+            {
+                name: 'successful_battery_charging_counter ',  //счетчик успешных зарядок батарей
+                byte: [7],
+                table: 'battery_parameters',
+                field: 'successful_battery_charging_counter ',
+                coefficient:  1,
+                offset: 0
+            }
+        ]
+    },
+    {
+        id: '18FF41CF',   
+        positions: [
+            {
+                name: 'charging_error_battery_not_enabled',  //ошибка из-за того, что батарея не была включена.
+                byte: [0],
+                bits: [0,1],
+                table: 'battery_parameters',
+                field: 'charging_error_battery_not_enabled',
+                mapping: {
+                    0: 'off',
+                    1: 'on',
+                }
+            },
+            {
+                name: 'charging_error_dcdc_not_enabled',  //ошибка из-за того, что DC-DC преобразователь не был включен.
+                byte: [0],
+                bits: [2,3],
+                table: 'battery_parameters',
+                field: 'charging_error_dcdc_not_enabled',
+                mapping: {
+                    0: 'off',
+                    1: 'on',
+                }
+            },
+            {
+                name: 'charging_error_battery_not_disabled',  // ошибка из-за того, что DC-DC преобразователь не был выключен..
+                byte: [0],
+                bits: [4,5],
+                table: 'battery_parameters',
+                field: 'charging_error_battery_not_disabled',
+                mapping: {
+                    0: 'off',
+                    1: 'on',
+                }
+            },
+            {
+                name: 'charging_error_dcdc_not_disabled',  //счетчик успешных зарядок батарей счетчик ошибок из-за того, что батарея не была включена.
+                byte: [0],
+                bits: [6,7],
+                table: 'battery_parameters',
+                field: 'charging_error_dcdc_not_disabled',
+                mapping: {
+                    0: 'off',
+                    1: 'on',
+                }
+            },
+            {
+                name: 'error_counter_battery_not_enabled',  //счетчик ошибок из-за того, что DC-DC преобразователь не был включен.
+                byte: [1],
+                table: 'battery_parameters',
+                field: 'error_counter_battery_not_enabled',
+                coefficient:  1,
+                offset: 0
+            },
+            {
+                name: 'error_counter_dcdc_not_enabled',  //счетчик ошибок из-за того, что батарея не была выключена.
+                byte: [2],
+                table: 'battery_parameters',
+                field: 'error_counter_dcdc_not_enabled',
+                coefficient:  1,
+                offset: 0
+            },
+            {
+                name: 'error_counter_battery_not_disabled',  //счетчик ошибок из-за того, что DC-DC преобразователь не был выключен.
+                byte: [3],
+                table: 'battery_parameters',
+                field: 'error_counter_battery_not_disabled',
+                coefficient:  1,
+                offset: 0
+            },
+            {
+                name: 'error_counter_dcdc_not_disabled',  //счетчик успешных зарядок батарей
+                byte: [4],
+                table: 'battery_parameters',
+                field: 'error_counter_dcdc_not_disabled',
+                coefficient:  1,
+                offset: 0
+            },
+            {
+                name: 'charging_low_voltage_batteries ',  //счетчик успешных зарядок батарей
+                byte: [6],
+                bits: [0, 1],
+                table: 'battery_parameters',
+                field: 'charging_low_voltage_batteries ',
+                mapping: {
+                    2: 'off',
+                    1: 'on',
+                }
+            },
+        ]
+    },
+    {
         id: '18FEF31C',   
         positions: [
             {
@@ -21,35 +187,6 @@ const parametersMapping: ParameterMapping[] = [
             }
         ]
     },
-    // {
-    //     id: '18F758F4',   
-    //     positions: [
-    //         {
-    //             name: 'speed',  //Скорость
-    //             byte: [0],
-    //             bits: [0],
-    //             table: 'locations',
-    //             field: 'speed',
-    //             mapping: {
-    //                 0: 'stopped',
-    //                 1: 'running',
-    //                 2: 'error'
-    //             }
-    //         },
-    //         {
-    //             name: 'speed',  //Скорость
-    //             byte: [0],
-    //             bits: [1],
-    //             table: 'locations',
-    //             field: 'speed',
-    //             mapping: {
-    //                 0: 'stopped',
-    //                 1: 'running',
-    //                 2: 'error'
-    //             }
-    //         }
-    //     ]
-    // },
     {
         id: '18FEE81C',   
         positions: [
@@ -217,8 +354,8 @@ const parametersMapping: ParameterMapping[] = [
                 table: 'powertrain_system_parameters',
                 field: 'hydraulic_sensor_level',
                 mapping: {
-                    0: 'no_oil',
-                    1: 'oil_present',
+                    0: 'oil_present', 
+                    1: 'no_oil',   
                 }
             },
             {
@@ -228,8 +365,8 @@ const parametersMapping: ParameterMapping[] = [
                 table: 'powertrain_system_parameters',
                 field: 'coolant_sensor_level',
                 mapping: {
-                    0: 'liquid_present',
-                    1: 'no_liquid'
+                    1: 'liquid_present',
+                    0: 'no_liquid'
                 }
             },
             {
@@ -296,14 +433,6 @@ const parametersMapping: ParameterMapping[] = [
     {
         id: '0CFFD003',
         positions: [
-            // {
-            //     name: 'gearbox_output_speed', //Cкорость вразения на выходе из коробки передач
-            //     byte: [3, 4],
-            //     table: 'powertrain_system_parameters',  // поменять таблицу и названия поля
-            //     field: 'gearbox_output_speed',             //
-            //     coefficient: 0.125,
-            //     offset: 0
-            // },
             {
                 name: 'transmission_status', // включенная передача
                 byte: [0],
@@ -360,11 +489,22 @@ const parametersMapping: ParameterMapping[] = [
         id: '18F75EF4',
         positions: [
             {
-                name: 'battery_on',  //вкл Батарей
+                name: 'main_power_on_relay_1_status',  //состояние основного реле включения питания 1
                 byte: [0],
-                bits: [0, 3],
-                table: 'powertrain_system_parameters',
-                field: 'battery_on',
+                bits: [0],
+                table: 'electric_system_parameters',
+                field: 'main_power_on_relay_1_status',
+                mapping: {
+                    0: 'off',
+                    1: 'on',
+                }
+            },
+            {
+                name: 'main_power_on_relay_2_status',  //состояние основного реле включения питания 2
+                byte: [0],
+                bits: [3],
+                table: 'electric_system_parameters',
+                field: 'main_power_on_relay_2_status',
                 mapping: {
                     0: 'off',
                     1: 'on',
@@ -517,7 +657,7 @@ const parametersMapping: ParameterMapping[] = [
         ]
     },
     {
-        id: '08F7121E',
+        id: '0CF7121D',
         positions: [
             {
                 name: 'terminal_15_ccs_to_ecu', //Клемма 15 ЦКБ К ЭБУ
